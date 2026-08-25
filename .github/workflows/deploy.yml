@@ -2,7 +2,7 @@ name: Deploy mdBook to GitHub Pages
 
 on:
   push:
-    branches: ["main"] # Cambia a "master" si tu rama principal se llama así
+    branches: ["main"] # Cambia a "master" si corresponde
 
 permissions:
   contents: read
@@ -28,12 +28,17 @@ jobs:
         with:
           mdbook-version: 'latest'
 
-      - name: Descargar e instalar mdbook-katex
+      # Configura la caché de Cargo para no recomputar en cada commit
+      - name: Cache de binaries de Cargo
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/
+          key: ${{ runner.os }}-cargo-katex-v1
+
+      # Instala mdbook-katex compilando con cargo si no está en la caché
+      - name: Instalar mdbook-katex
         run: |
-          KATEX_VERSION="0.14.0"
-          curl -sSL "https://github.com/lzanini/mdbook-katex/releases/download/v${KATEX_VERSION}/mdbook-katex-v${KATEX_VERSION}-x86_64-unknown-linux-musl.tar.gz" | tar -xz
-          mv mdbook-katex /usr/local/bin/
-          chmod +x /usr/local/bin/mdbook-katex
+          which mdbook-katex || cargo install mdbook-katex
 
       - name: Compilar la documentación (Generar HTML)
         run: mdbook build
