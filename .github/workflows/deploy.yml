@@ -28,13 +28,12 @@ jobs:
         with:
           mdbook-version: 'latest'
 
-      # Instala la herramienta de instalación rápida de binarios precompilados en Rust
-      - name: Instalar cargo-binstall
-        uses: cargo-bins/cargo-binstall-action@v1.10.2
-
-      # Instala mdbook-katex usando el binario precompilado (tarda ~2 segundos)
-      - name: Instalar mdbook-katex
-        run: cargo binstall --no-confirm mdbook-katex
+      - name: Descargar e instalar mdbook-katex
+        run: |
+          KATEX_VERSION="0.14.0"
+          curl -sSL "https://github.com/lzanini/mdbook-katex/releases/download/v${KATEX_VERSION}/mdbook-katex-v${KATEX_VERSION}-x86_64-unknown-linux-musl.tar.gz" | tar -xz
+          mv mdbook-katex /usr/local/bin/
+          chmod +x /usr/local/bin/mdbook-katex
 
       - name: Compilar la documentación (Generar HTML)
         run: mdbook build
@@ -47,3 +46,4 @@ jobs:
       - name: Desplegar en GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        
