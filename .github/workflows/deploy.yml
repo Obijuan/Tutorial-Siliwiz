@@ -2,7 +2,7 @@ name: Deploy mdBook to GitHub Pages
 
 on:
   push:
-    branches: ["main"] 
+    branches: ["main"] # Cambia a "master" si tu rama principal se llama así
 
 permissions:
   contents: read
@@ -23,13 +23,20 @@ jobs:
       - name: Checkout del código
         uses: actions/checkout@v4
 
-      - name: Instalar mdBook y mdbook-katex
+      - name: Instalar mdBook
         uses: peaceiris/actions-mdbook@v2
         with:
           mdbook-version: 'latest'
-          recipes: 'mdbook-katex' # Instala automáticamente el binario de KaTeX
 
-      - name: Compilar la documentación
+      # Instala la herramienta de instalación rápida de binarios precompilados en Rust
+      - name: Instalar cargo-binstall
+        uses: cargo-bins/cargo-binstall-action@v1.10.2
+
+      # Instala mdbook-katex usando el binario precompilado (tarda ~2 segundos)
+      - name: Instalar mdbook-katex
+        run: cargo binstall --no-confirm mdbook-katex
+
+      - name: Compilar la documentación (Generar HTML)
         run: mdbook build
 
       - name: Subir artefactos de la web
