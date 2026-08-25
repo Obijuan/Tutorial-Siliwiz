@@ -15,6 +15,10 @@
 [Modificando el diseño](13-modify.md)
 [Visualizando el modelo en 3D](14-modelo-3D.md)  
 [Conclusiones](15-conclusiones.md)
+
+
+---
+
 [Autor](autor.md)
 [Licencia](licencia.md)
 [Créditos](creditos.md)
