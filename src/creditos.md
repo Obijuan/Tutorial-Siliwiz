@@ -1,0 +1,6 @@
+# Créditos
+
+* Siliwiz es una herramienta creada por Matt Venn
+* Para la documentación del tutorial he utilizado información del curso [Zero to asic](https://zerotoasiccourse.com/) y del proyecto [TinyTapeout: ¡Fabrica tus propios chips!](https://tinytapeout.com/)
+
+

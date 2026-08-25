@@ -1,0 +1,45 @@
+# Guardando el diseño
+
+El diseño creado, que hemos visto que funciona, lo vamos a guardar en un **fichero local**. Para ello pinchamos en el **botón de SAVE**
+
+![](images/30-save-7.png)  
+
+Automáticamente se empieza a descargar el fichero `siliwiz-design.json`
+
+![](images/31-save-2.png)  
+
+Este es el contenido del fichero creado
+
+* [mosfet-n.json](https://github.com/Obijuan/Learn-open-silicon/raw/refs/heads/main/wiki/Siliwiz/examples/mosfet-n.json)  
+
+```json
+{
+  "version": 1,
+  "app": "siliwiz",
+  "timestamp": 1787478891,
+  "rects": [
+    { "x": 28.35, "y": 6, "height": 342, "width": 352, "layer": "p substrate" },
+    { "x": 119.35, "y": 151, "height": 104, "width": 197, "layer": "n diffusion" },
+    { "x": 266.35, "y": 279, "height": 61, "width": 98, "layer": "p tap" },
+    { "x": 197.35, "y": 116, "height": 158, "width": 37, "layer": "polysilicon" },
+    { "x": 191.35, "y": 102, "height": 34, "width": 48, "layer": "metal1 via" },
+    { "x": 132.35, "y": 181, "height": 48, "width": 33, "layer": "metal1 via" },
+    { "x": 262.35, "y": 179, "height": 52, "width": 34, "layer": "metal1 via" },
+    { "x": 294.35, "y": 293, "height": 39, "width": 53, "layer": "metal1 via" },
+    { "x": 176.35, "y": 76, "height": 51, "width": 77, "layer": "metal1", "label": "in" },
+    { "x": 110.35, "y": 185, "height": 50, "width": 48, "layer": "metal1", "label": "vss" },
+    { "x": 267.35, "y": 183, "height": 53, "width": 58, "layer": "metal1", "label": "vdd" },
+    { "x": 307.35, "y": 287, "height": 49, "width": 46, "layer": "metal1", "label": "vss" }
+  ],
+  "graph": {
+    "dcSweep": false,
+    "minInVoltage": 0,
+    "maxInVoltage": 5,
+    "pulseDelay": 0,
+    "riseTime": 50,
+    "signalNames": "in i(vdd)*-1000",
+    "tranTime": 60000000
+  }
+}
+```
+
