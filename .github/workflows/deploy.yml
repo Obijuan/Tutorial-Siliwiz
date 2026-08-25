@@ -2,15 +2,13 @@ name: Deploy mdBook to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main"] # Cambia a "master" si corresponde
 
-# Opciones de permisos necesarias para desplegar en GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Permite solo un despliegue simultáneo a la vez
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -25,22 +23,20 @@ jobs:
       - name: Checkout del código
         uses: actions/checkout@v4
 
-      - name: Instalar mdBook
+      - name: Instalar mdBook y mdbook-katex
         uses: peaceiris/actions-mdbook@v2
         with:
           mdbook-version: 'latest'
-          # Si usas plugins como mdbook-katex o mdbook-toc, los puedes añadir aquí:
-          # recipes: 'mdbook-katex'
+          recipes: 'mdbook-katex' # Instala automáticamente el binario de KaTeX
 
-      - name: Compilar la documentación (Generar HTML)
+      - name: Compilar la documentación
         run: mdbook build
 
       - name: Subir artefactos de la web
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./book # Carpeta donde mdBook guarda el HTML generado
+          path: ./book
 
       - name: Desplegar en GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
